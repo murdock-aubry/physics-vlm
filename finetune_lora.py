@@ -164,13 +164,16 @@ def main():
 
     # Add language model components
     language_target_modules = ["q_proj", "v_proj", "k_proj", "out_proj", "gate_proj", "up_proj", "down_proj"]
+    # language_target_modules = ["q_proj", "v_proj", "k_proj", "out_proj"]
 
     # Combine both sets of target modules
     target_weights = vision_target_modules + language_target_modules
 
+    print("Training the following weights:", language_target_modules)
 
 
-    num_samples = 5000
+
+    num_samples = 2000
     epochs = 3
     
     print("Initializing training params", flush = True)
@@ -253,7 +256,7 @@ def main():
     # Start training
     trainer.train()
     
-    ckpt_name = f"{output_dir}/epoch{epochs}_samples{num_samples}_{'_'.join(target_weights)}"
+    ckpt_name = f"{output_dir}/epoch{epochs}_samples{num_samples}"
     # Save the model
     trainer.save_model(ckpt_name)
     processor.save_pretrained(ckpt_name)

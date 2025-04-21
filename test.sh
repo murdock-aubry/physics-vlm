@@ -10,4 +10,4 @@
 
 cd /scratch/ssd004/scratch/murdock/physics-vlm
 
-srun python finetune.py
+srun python data.py
