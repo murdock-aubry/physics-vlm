@@ -3,3 +3,6 @@ lets-code
 slurm-queue.sh
 /phys101/
 *.zip
+*.csv
+*.log
+*.mp4
