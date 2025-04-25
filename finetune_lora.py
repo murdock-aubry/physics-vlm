@@ -140,6 +140,7 @@ def custom_collator(batch):
 def main():
     # Configuration
     model_id = "LanguageBind/Video-LLaVA-7B-hf"
+        #ADD YOUR DATAPATH HERE
     output_dir = "/projects/dynamics/vlm-tmp"
     data_path = "Mouwiya/Video-10M"
 

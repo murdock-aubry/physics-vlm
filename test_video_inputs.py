@@ -151,7 +151,7 @@ def round_softmax(probs, decimal_places=4):
     
     return normalized
 
-def get_yes_no_probability(model, inputs, processor):
+def continuous_resp(model, inputs, processor):
     # Get the generated token IDs and the first new token
     generate_ids = model.generate(
     **inputs, 
@@ -190,7 +190,7 @@ def get_yes_no_probability(model, inputs, processor):
         "no_prob": no_prob,
     }
 
-def normal_resp(model, inputs, processor):
+def binary_resp(model, inputs, processor):
     generate_ids = model.generate(
     **inputs, 
     max_new_tokens=10,
@@ -236,9 +236,12 @@ def cot_resp(model,inputs, processor, llm_model,llm_processor):
 def filter_alphabetic(text):
     # This regex will keep only alphabetic characters (both lowercase and uppercase) and spaces
     return re.sub(r'[^a-zA-Z ]+', '', text)
+
+
+
   
 #for intphys    
-base_folder = "/w/340/abarroso/Datasets/dev/O3/06/2"
+base_folder = "../Datasets/dev/O3/06/2"
 frames_batch = load_scene_frames_parallel(base_folder, skip=7)
 output_acc = get_is_possible_from_json(base_folder)
 print(len(frames_batch))
@@ -253,13 +256,13 @@ print(len(frames_batch))
 base_model_name = "LanguageBind/Video-LLaVA-7B-hf"
 adapter_name = "mvrdock/Video-LLaVA-7B-natural"
 
-base_model = VideoLlavaForConditionalGeneration.from_pretrained(base_model_name, load_in_4bit=True, cache_dir="/w/340/abarroso/huggingface/models")
-model = PeftModel.from_pretrained(base_model, adapter_name, cache_dir ="/w/340/abarroso/huggingface/models")
+base_model = VideoLlavaForConditionalGeneration.from_pretrained(base_model_name, load_in_4bit=True, cache_dir="/your/cache/dir")
+model = PeftModel.from_pretrained(base_model, adapter_name, cache_dir ="/your/cache/dir")
 
 processor = VideoLlavaProcessor.from_pretrained(base_model_name)
 llm_model_name = "vicgalle/gpt2-open-instruct-v1"
-llm_model = AutoModelForCausalLM.from_pretrained(llm_model_name, cache_dir="/w/340/abarroso/huggingface/models")
-llm_tokenizer = AutoTokenizer.from_pretrained(llm_model_name, cahce_dir="/w/340/abarroso/huggingface/models")
+llm_model = AutoModelForCausalLM.from_pretrained(llm_model_name, cache_dir="/your/cache/dir")
+llm_tokenizer = AutoTokenizer.from_pretrained(llm_model_name, cahce_dir="/your/cahce/dir")
 processor.patch_size = 14
 processor.vision_feature_select_strategy = "uniform"
 prompt = """User: <video>\n Do all objects in the video move without skipping or teleporting through space? Explain why or why not.\nAssistant:"""

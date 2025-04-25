@@ -1,14 +1,16 @@
-video_dir: "../Datasets/inflevel_lab/"
+video_dir: "to/your/Datasets/inflevel_lab/"
 base_model_name: "LanguageBind/Video-LLaVA-7B-hf" 
 adapter_name: "mvrdock/Video-LLaVA-7B-natural-2000" #Null, mvrdock/Video-LLaVA-7B-natural
 experiment_name: "continuity"
-output_file_name: "continuity-natv2"
+output_file_name: "nat-2"
 dataset_type: "inflevel"
-hf_home: "/w/340/abarroso/huggingface"
+hf_home: "/to/your/cache/dir"
 n_frames: 20 #How many frames you skipS
 num_workers: 0
+# for a full list of prompts, see prompts.yaml
 prompt: "USER: <video>\nGive this video a physical feasibility score from 1 to 10, where 10 means it fully obeys the laws of physics and has no visual continuity errors (like objects disappearing or jumping positions). Respond with only a number. ASSISTANT:"
-test_type: Null
+test_type: Null #only one test type for inflevel
+cot_config: Null
 experiment_config:
   gravity:
     fields: ["camera_loc", "cover", "obj", "trial_type"]
