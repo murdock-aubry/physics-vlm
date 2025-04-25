@@ -130,15 +130,7 @@ Contains:
 
 ---
 
-## 📄 Citation
+## 📄 Paper
 
-If you use this codebase, please cite our work:
-
-```
-@inproceedings{yourpaper2025,
-  title={Measuring Vision Language Models’ Ability to Detect Physical Anomalies},
-  author={Your Name et al.},
-  booktitle={SIGGRAPH 2025},
-  year={2025}
-}
+The official paper can be found here: TBD
 ```
