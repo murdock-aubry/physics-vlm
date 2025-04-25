@@ -1,15 +1,25 @@
-video_dir: "../Datasets/inflevel_lab/"
-base_model_name: "LanguageBind/Video-LLaVA-7B-hf"
-adapter_name: "mvrdock/Video-LLaVA-7B-natural-2000"
-experiment_name: "continuity"
-output_file_name: "continuity-natv2"
-dataset_type: "inflevel"
-hf_home: "/w/340/abarroso/huggingface"
-n_frames: 20
+video_dir: "../Datasets/dev/" #upper leve directory where your datasets are stored
+base_model_name: "LanguageBind/Video-LLaVA-7B-hf" 
+adapter_name: Null #"mvrdock/Video-LLaVA-7B-natural-2000" #Null, mvrdock/Video-LLaVA-7B-natural
+experiment_name: "O3" # corresponds to the folder name like O1,O2,O3 or gravity, etc
+output_file_name: "base" 
+dataset_type: "intphys" #intphys or inflevel
+hf_home: "/w/340/abarroso/huggingface" # for caching
+n_frames: 7 # How many frames you skipS
 num_workers: 0
-prompt: "USER: <video>\nGive this video a physical feasibility score from 1 to 10, where 10 means it fully obeys the laws of physics and has no visual continuity errors (like objects disappearing or jumping positions). Respond with only a number. ASSISTANT:"
+prompt: "User: <video>\n Do all objects in the video move without skipping or teleporting through space? Explain why or why not.\nAssistant:" 
 
-experiment_config:
+# test type and cot only for inflevel
+test_type: "COT" # COT, continuos or binary
+cot_config:  #Only works if test type is "COT"
+  LLM_model_name: "vicgalle/gpt2-open-instruct-v1"
+  LLM_prompt: |
+                ### Instruction:
+                Answer with "yes" or "no" only. If the statement clearly indicates that **an object** skips or teleports, answer "no". If the statement suggests that **all objects** move without skipping or teleporting, answer "yes".
+                Statment:
+                {llava_output}
+                ### Response:\n
+experiment_config: #Only use for Inflevel, these are pretty much constant
   gravity:
     fields: ["camera_loc", "cover", "obj", "trial_type"]
   continuity:

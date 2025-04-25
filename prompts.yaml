@@ -1,0 +1,29 @@
+intphys_shape:  "USER: <video>\n Do all objects in this video maintain their shape? Answer 'yes' or 'no' only. Assistant:"
+intphys_cot_shape: "USER: <video>\n Do all objects in the video maintain their shape, explain why or why not. \nAssistant:" 
+intphys_cot_llm_shape:  |
+                          ### Instruction:
+                          Answer with "yes" or "no" only. If the statement clearly indicates that **an object** does not maintain its shape, answer "no". If the statement suggests that **all objects** maintain their shape, answer "yes".
+                          Statment:
+                          {llava_output}
+                          ### Response:\n
+
+intphys_constancy: "User: <video>\n Do all objects in the video remain consistent and don't disappear or reappear unexpectedly during occlusions or movements? Answer 'yes' or 'no' only. \nAssistant:"
+intphys_cot_constancy: "User: <video>\n Do all objects behave naturally throughout the video during occlusions and movement without dissapearing or appearing randomly? Explain why or why not.\nAssistant:"
+intphys_cot_llm_constancy: |
+                              ### Instruction:
+                              Answer with "yes" or "no" only. If the statement clearly indicates that **an object** does not maintain constancy or remain consistent, answer "no". If the statement suggests that **all objects** remain consistent, answer "yes".
+                              Statment:
+                              {llava_output}
+                              ### Response:\n
+
+
+intphys_continuity: "User: <video>\n Do all objects move naturally through time without any teleporting or skipping? Answer 'yes' or 'no' only. \nAssistant:"
+intphys_cot_continuity: "User: <video>\n Do all objects in the video move without skipping or teleporting through space? Explain why or why not.\nAssistant:" 
+intphys_cot_llm_continuity: |
+                              ### Instruction:
+                              Answer with "yes" or "no" only. If the statement clearly indicates that **an object** skips or teleports, answer "no". If the statement suggests that **all objects** move without skipping or teleporting, answer "yes".
+                              Statment:
+                              {llava_output}
+                              ### Response:\n
+
+inflevel: "USER: <video>\nGive this video a physical feasibility score from 1 to 10, where 10 means it fully obeys the laws of physics and has no visual continuity errors (like objects disappearing or jumping positions). Respond with only a number. ASSISTANT:"
