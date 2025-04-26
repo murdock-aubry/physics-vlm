@@ -132,5 +132,5 @@ Contains:
 
 ## 📄 Paper
 
-The official paper can be found here: TBD
+The official paper can be found here: [View the final report](./final_report.pdf)
 ```
